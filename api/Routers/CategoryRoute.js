@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const CategoryData = require("../../Schemas/Category_data"); 
-const staticAuth = require("../middleware/staticAuth");
-const auth = require("../middleware/auth");
 
 
 router.get("/",async (req, res) => {
