@@ -52,7 +52,7 @@ app.use('/api/auth', AuthRoute);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
-app.use(auth);
+// app.use(auth);
 app.use('/user' , UserRouter);
 app.use("/business", BusinessRouter);
 app.use("/popularsearches", PopularSearches);
