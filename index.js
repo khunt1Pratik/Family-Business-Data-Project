@@ -32,9 +32,6 @@ app.use(cors({
 
 app.use(express.json());
 
-
-const sequelize = require("./database"); // adjust path
-
 sequelize.authenticate()
   .then(() => console.log("✅ Railway MySQL connected"))
   .catch(err => console.error("❌ DB connection failed:", err));
