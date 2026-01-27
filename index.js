@@ -33,10 +33,12 @@ app.use(cors({
 app.use(express.json());
 
 
-// DB Test
+const sequelize = require("./database"); // adjust path
+
 sequelize.authenticate()
-  .then(() => console.log('Database connected...'))
-  .catch(err => console.error('Error: ' + err));
+  .then(() => console.log("✅ Railway MySQL connected"))
+  .catch(err => console.error("❌ DB connection failed:", err));
+
 
 // Sync database
 sequelize.sync()
