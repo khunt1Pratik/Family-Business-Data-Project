@@ -17,19 +17,19 @@ const businessKeywordsRouter = require("./api/Routers/BusinessKeywordRoute");
 
 const auth = require("./api/middleware/staticAuth");
 
-// app.use(cors({
-//   origin: true,
-//   credentials: true,
-//   allowedHeaders: [
-//     "Content-Type",
-//     "Authorization",
-//     "authorization",
-//     "x-api-key"
-//   ],
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-// }));
+app.use(cors({
+  origin: true,
+  credentials: true,
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "authorization",
+    "x-api-key"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+}));
 
-app.use(cors)
+
 
 app.use(express.json());
 
