@@ -1,3 +1,5 @@
+// local 
+
 // const { Sequelize } = require("sequelize");
 
 // const sequelize = new Sequelize(
@@ -13,21 +15,24 @@
 
 // module.exports = sequelize;
 
-const { Sequelize } = require("sequelize");
+// railway --------------------------------------------------------------------
 
-const sequelize = new Sequelize(
-  "railway", //db name
-  "root",// databse user
-  "EGoCxgcXEnkQlKDdQKHAwtvWWmFHfTCj", // password
-  {
-    host: "mysql.railway.internal", 
-    dialect: "mysql",
-    port: 3306
-  }
-);
+// const { Sequelize } = require("sequelize");
 
-module.exports = sequelize;
+// const sequelize = new Sequelize(
+//   "railway", //db name
+//   "root",// databse user
+//   "EGoCxgcXEnkQlKDdQKHAwtvWWmFHfTCj", // password
+//   {
+//     host: "mysql.railway.internal", 
+//     dialect: "mysql",
+//     port: 3306
+//   }
+// );
 
+// module.exports = sequelize;
+
+// webseek--------------------------------------------------------------------------
 
 // const { Sequelize } = require("sequelize");
 
@@ -43,3 +48,23 @@ module.exports = sequelize;
 // );
 
 // module.exports = sequelize;
+
+
+
+// rander -----------------------------------------------------------------------------
+
+
+const { Sequelize } = require("sequelize");
+
+const sequelize = new Sequelize(
+  "family_sql",     // db name
+  "family_sql_user",                   // username
+  "STh3DWbj7E2wYArrWgCamlykYIGXziYu",                         // <-- EMPTY PASSWORD
+  {
+    host: "dpg-d62a6i14tr6s73c9cnug-a",
+    dialect: "mysql",
+    port: 5432
+  }
+);
+
+module.exports = sequelize;
