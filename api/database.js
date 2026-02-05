@@ -62,7 +62,7 @@ const sequelize = new Sequelize(
   "STh3DWbj7E2wYArrWgCamlykYIGXziYu",                         // <-- EMPTY PASSWORD
   {
     host: "dpg-d62a6i14tr6s73c9cnug-a",
-    dialect: "mysql",
+    dialect: "postgresql",
     port: 5432
   }
 );
