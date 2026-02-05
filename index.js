@@ -51,6 +51,11 @@ UserData.hasMany(Business, { foreignKey: 'user_id' });
 app.use('/api/auth', AuthRoute);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 app.use(auth);
 app.use('/user' , UserRouter);
@@ -59,6 +64,7 @@ app.use("/popularsearches", PopularSearches);
 app.use("/categories", categoryRoutes);
 app.use("/keyword", Keyword);
 app.use("/businessKeywords", businessKeywordsRouter);
+
 
 
 
