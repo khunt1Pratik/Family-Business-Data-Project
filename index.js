@@ -49,7 +49,7 @@ UserData.hasMany(Business, { foreignKey: 'user_id' });
 
 
 app.use('/api/auth', AuthRoute);
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
