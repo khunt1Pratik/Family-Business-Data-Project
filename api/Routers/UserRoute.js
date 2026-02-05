@@ -58,7 +58,7 @@ router.post("/", async (req, res) => {
 });
 
 
-router.put("/update/:id",async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const userId = Number(req.params.id);
     const user = await UserData.findByPk(userId);
@@ -66,20 +66,56 @@ router.put("/update/:id",async (req, res) => {
 
     const updateData = {};
     const fields = ["FirstName", "MiddleName", "LastName", "VillageName", "CityName", "Email", "PhoneNumber"];
-    fields.forEach((key) => {
-      if (req.body[key]?.trim()) updateData[key] = req.body[key].trim();
-    });
 
+    for (const key of fields) {
+      if (req.body[key]?.trim()) {
+        updateData[key] = req.body[key].trim();
+      }
+    }
+
+    // 🔴 Check duplicate Email
+    if (updateData.Email) {
+      const emailExists = await UserData.findOne({
+        where: {
+          Email: updateData.Email,
+          id: { [require("sequelize").Op.ne]: userId }, // exclude current user
+        },
+      });
+
+      if (emailExists) {
+        return res.status(409).json({ message: "Email is already registered" });
+      }
+    }
+
+    // 🔴 Check duplicate Phone
+    if (updateData.PhoneNumber) {
+      const phoneExists = await UserData.findOne({
+        where: {
+          PhoneNumber: updateData.PhoneNumber,
+          id: { [require("sequelize").Op.ne]: userId },
+        },
+      });
+
+      if (phoneExists) {
+        return res.status(409).json({ message: "Phone number is already registered" });
+      }
+    }
+
+    // 🔐 Update password if provided
     if (req.body.password && req.body.password.trim() !== "") {
-      updateData.password = sha256(req.body.password);
+      updateData.password = sha256(req.body.password.trim());
     }
 
     await user.update(updateData);
+
     res.json({ message: "Profile updated successfully", user });
+
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error("Update error:", err);
+    res.status(500).json({ message: "Server error. Please try again." });
   }
 });
+
 
 
 router.put("/admin/:id",async (req, res) => {
